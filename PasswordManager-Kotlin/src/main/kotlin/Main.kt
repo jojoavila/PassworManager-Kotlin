@@ -60,7 +60,7 @@ fun main() {
             // calling function that deletes passwords
             "3" -> {
                 val keyToDelete = enterID()
-                deletePaswword(filePath, keyToDelete)
+                deletePassword(filePath, keyToDelete)
             }
             // If inserted an invalid input
             !in options -> {
@@ -102,8 +102,7 @@ fun newPassword(secretKey: String, jsonArray: JSONArray, filePath: String) {
 
 // Function to retrieve and decrypt password based on ID
 fun retrievePassword(jsonArray: JSONArray, keyToFilter: String, secretKey: String) {
-    //println("Data retrieved from the JSON file for key '$keyToFilter':")
-    for (i in 0 until jsonArray.length()) {
+    for (i in 0..<jsonArray.length()) {
         val jsonObject = jsonArray.getJSONObject(i)
         if (jsonObject.has(keyToFilter)) {
             val value = jsonObject.getString(keyToFilter)
@@ -114,7 +113,7 @@ fun retrievePassword(jsonArray: JSONArray, keyToFilter: String, secretKey: Strin
 }
 
 // Function to delete a saved password
-fun deletePaswword(filePath: String, keyToDelete: String) {
+fun deletePassword(filePath: String, keyToDelete: String) {
     val jsonArray = readJsonArrayFromFile(filePath)
     val iterator = jsonArray.iterator()
     while (iterator.hasNext()) {
